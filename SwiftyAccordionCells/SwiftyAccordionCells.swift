@@ -14,7 +14,6 @@ class SwiftyAccordionCells {
     class Item {
         var isHidden: Bool
         var value: AnyObject
-        
         init(_ hidden: Bool = true, value: AnyObject) {
             self.isHidden = hidden
             self.value = value
@@ -24,6 +23,12 @@ class SwiftyAccordionCells {
     class HeaderItem: Item {
         init (value: AnyObject) {
             super.init(false, value: value)
+        }
+    }
+    
+    class SubItem: Item{
+        init(value: AnyObject) {
+            super.init(true, value: value)
         }
     }
     
@@ -44,12 +49,22 @@ class SwiftyAccordionCells {
     }
     
     private func toogleVisible(var headerIndex: Int, isHidden: Bool) {
-        headerIndex++
-        
-        while headerIndex < self.items.count && !(self.items[headerIndex] is HeaderItem) {
-            self.items[headerIndex].isHidden = isHidden
-            
-            headerIndex++
+        if !(self.items[headerIndex] is SubItem) {
+            if (self.items[headerIndex] is HeaderItem) {
+                headerIndex++
+                
+                while headerIndex < self.items.count && !(self.items[headerIndex] is HeaderItem) {
+                    self.items[headerIndex].isHidden = isHidden
+                    if (isHidden) {
+                        toogleVisible(headerIndex, isHidden: isHidden)
+                    }
+                    headerIndex+=2
+                }
+
+            } else {
+               headerIndex++
+               self.items[headerIndex].isHidden = isHidden
+            }
         }
     }
 }

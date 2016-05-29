@@ -1,43 +1,24 @@
 //
-//  ViewController.swift
+//  File.swift
 //  SwiftyAccordionCells
 //
-//  Created by Fischer, Justin on 9/24/15.
-//  Copyright © 2015 Justin M Fischer. All rights reserved.
+//  Created by Sahil Dhankhar on 29/05/16.
+//  Copyright © 2016 Justin M Fischer. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSource  {
+class AccordianTable:NSObject,  UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var table: UITableView!
-
+    var table: UITableView!
     
-    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        let data = [SwiftyAccordionCells.HeaderItem(value: "Title 1"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 1"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 1"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 2"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 2"),
-//                SwiftyAccordionCells.HeaderItem(value: "Title 2"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 1"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 21"),
-//                SwiftyAccordionCells.HeaderItem(value: "Title 3"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 1"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 31"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 2"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 32"),
-//                SwiftyAccordionCells.Item(value: "Sub Item 3"),
-//                SwiftyAccordionCells.SubItem(value: "Sub Sub Item 33")]
-//        let accordianTable = AccordianTable(table: table, data: data)
-//        table.dataSource = accordianTable
-//        table.delegate = accordianTable
+    init(table: UITableView, data: [SwiftyAccordionCells.Item]) {
+        self.table = table
+        self.data = data
+        super.init()
         self.setup()
-
-        
     }
-    
+    var data: [SwiftyAccordionCells.Item]
     var previouslySelectedHeaderIndex: Int?
     var previouslySelectedItemIndex: Int?
     
@@ -50,24 +31,9 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
     
     
     func setup() {
-//        for cell in self.data {
-//            self.cells.append(cell)
-//        }
-        self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Title 1"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 1"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 2"))
-        self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Title 2"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 21"))
-        self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Title 3"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 31"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 32"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))
-        self.cells.append(SwiftyAccordionCells.SubItem(value: "Sub Sub Item 33"))
+        for cell in self.data {
+            self.cells.append(cell)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -186,10 +152,9 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             //                    let previousCell = self.table.cellForRowAtIndexPath(NSIndexPath(forRow: selectedSubItemIndex, inSection: 0))
             //                    previousCell?.accessoryType = UITableViewCellAccessoryType.None
             //                }
-            //
+            //                
             //                self.selectedSubItemIndex = indexPath.row
             //            }
         }
     }
-
 }

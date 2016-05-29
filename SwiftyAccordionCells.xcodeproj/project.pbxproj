@@ -13,6 +13,7 @@
 		4E8116E41BB4B5A70044D85F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E8116E31BB4B5A70044D85F /* Assets.xcassets */; };
 		4E8116E71BB4B5A70044D85F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8116E51BB4B5A70044D85F /* LaunchScreen.storyboard */; };
 		4E81170C1BB4B6D80044D85F /* SwiftyAccordionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E81170B1BB4B6D80044D85F /* SwiftyAccordionCells.swift */; };
+		BCEB70B41CFAF5C30015A0E5 /* AccordianTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB70B31CFAF5C30015A0E5 /* AccordianTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4E8116E61BB4B5A70044D85F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E8116E81BB4B5A70044D85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E81170B1BB4B6D80044D85F /* SwiftyAccordionCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyAccordionCells.swift; sourceTree = "<group>"; };
+		BCEB70B31CFAF5C30015A0E5 /* AccordianTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordianTable.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				4E8116E31BB4B5A70044D85F /* Assets.xcassets */,
 				4E8116E51BB4B5A70044D85F /* LaunchScreen.storyboard */,
 				4E8116E81BB4B5A70044D85F /* Info.plist */,
+				BCEB70B31CFAF5C30015A0E5 /* AccordianTable.swift */,
 			);
 			path = SwiftyAccordionCells;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E81170C1BB4B6D80044D85F /* SwiftyAccordionCells.swift in Sources */,
+				BCEB70B41CFAF5C30015A0E5 /* AccordianTable.swift in Sources */,
 				4E8116DF1BB4B5A70044D85F /* ViewController.swift in Sources */,
 				4E8116DD1BB4B5A70044D85F /* AppDelegate.swift in Sources */,
 			);
