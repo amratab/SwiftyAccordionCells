@@ -13,10 +13,12 @@ class SwiftyAccordionCells {
     
     class Item {
         var isHidden: Bool
+        var isExpanded: Bool
         var value: AnyObject
-        init(_ hidden: Bool = true, value: AnyObject) {
+        init(_ hidden: Bool = true, value: AnyObject, isExpanded: Bool = false) {
             self.isHidden = hidden
             self.value = value
+            self.isExpanded = isExpanded
         }
     }
     

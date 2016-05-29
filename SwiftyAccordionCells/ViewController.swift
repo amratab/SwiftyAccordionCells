@@ -99,7 +99,6 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             
             return cell
         }
-        
         return UITableViewCell()
     }
     
@@ -110,12 +109,26 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             return 60
         } else if (item.isHidden) {
             return 0
-            //        } else if (!item.isHidden && item is SwiftyAccordionCells.SubItem){
-            //            return 44
         } else {
             return 44
         }
     }
+//    
+//    func tableView(tableView: UITableView, accessoryTypeForRowWithIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
+//        let item = self.cells.items[indexPath.row]
+//
+//        let expandButton = UIButton(type: UIButtonType.Custom) as UIButton
+//        let collapseButton = UIButton(type: UIButtonType.Custom) as UIButton
+//        expandButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        expandButton.setImage(UIImage(named: "expand.png"), forState: UIControlState.Normal)
+//        collapseButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        collapseButton.setImage(UIImage(named: "collapse.png"), forState: UIControlState.Normal)
+//        if item is SwiftyAccordionCells.SubItem {
+//            return UITableViewCellAccessoryType.None
+//        } else if (item.isExpanded) {
+//            return collapseButton as UIView
+//        }
+//    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.cells.items[indexPath.row]
@@ -141,6 +154,9 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             }
             
             if let previouslySelectedHeaderIndex = self.previouslySelectedHeaderIndex {
+                let previousIndexPath = NSIndexPath(forItem: previouslySelectedHeaderIndex, inSection: 0)
+                let previousCell = self.table.cellForRowAtIndexPath(previousIndexPath)
+                previousCell?.accessoryView = expandButton as UIView
                 self.cells.collapse(previouslySelectedHeaderIndex)
             }
             
@@ -165,6 +181,9 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             }
             
             if let previouslySelectedItemIndex = self.previouslySelectedItemIndex {
+                let previousIndexPath = NSIndexPath(forItem: previouslySelectedItemIndex, inSection: 0)
+                let previousCell = self.table.cellForRowAtIndexPath(previousIndexPath)
+                previousCell?.accessoryView = expandButton as UIView
                 self.cells.collapse(previouslySelectedItemIndex)
             }
             
@@ -177,9 +196,6 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
                 self.previouslySelectedItemIndex = nil
             }
             
-            self.table.beginUpdates()
-            self.table.endUpdates()
-            
             //        } else {
             //            if indexPath.row != self.selectedSubItemIndex {
             //                if let selectedSubItemIndex = self.selectedSubItemIndex {
@@ -189,6 +205,22 @@ class ViewController:UIViewController,  UITableViewDelegate, UITableViewDataSour
             //
             //                self.selectedSubItemIndex = indexPath.row
             //            }
+        }
+        self.table.beginUpdates()
+        self.table.endUpdates()
+        self.updateHiddenItems()
+    }
+    
+    func updateHiddenItems() {
+        for (index, cell) in self.cells.items.enumerate() {
+            if !(cell is SwiftyAccordionCells.SubItem) && cell.isHidden {
+                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+                let hiddenCell = self.table.cellForRowAtIndexPath(indexPath)
+                let expandButton = UIButton(type: UIButtonType.Custom) as UIButton
+                expandButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                expandButton.setImage(UIImage(named: "expand.png"), forState: UIControlState.Normal)
+                hiddenCell?.accessoryView = expandButton as UIView
+            }
         }
     }
 
